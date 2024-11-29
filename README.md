@@ -12,4 +12,4 @@ Cela peut se formaliser sous la forme de tutoriels, fiches de configuration, lis
 
 Le but premier est de synchroniser mes notes qqpart. Puis dans un second temps, pourquoi ne pas les mettre sur GitHub (il n'y a rien de secret ni perso dedans)
 
-J'espère que ça pourra servir à d'autres !
+J'espère que ça pourra servir à d'autres 🙂 !
