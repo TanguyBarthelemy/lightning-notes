@@ -2,7 +2,7 @@
 
 ## Présentation
 
-Ensemble de documentations liées de près ou de loin à JDemetra+ et / ou R.
+Ressources pour le développement de packages R, de programmes JDemetra+ et d'organisation en générale !
 
 ### Type de documents
 
