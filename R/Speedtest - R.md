@@ -29,6 +29,8 @@ library("microbenchmark")
 > ```
 
 ![[extraction_col.png]]
+![[img/extraction_col.png]]
+![img/extraction_col.png]
 
 ### Extraction d'élément
 
