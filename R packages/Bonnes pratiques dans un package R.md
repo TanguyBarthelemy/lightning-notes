@@ -35,19 +35,23 @@ Soit je charge la fonction `g` dans le `NAMESPACE` de mon package `aaa` en ajout
 Avantages :
 - Fonction rapide d'utilisation
 - Code lisible
+
 Désavantages :
 - `aaa` s'alourdit en dépendance dans le `NAMESPACE`
 - Ne permet pas de régler les conflits de noms
+
 ### `import`
 Soit je charge l'ensemble du package a fonction `bbb` le `NAMESPACE` de mon package `aaa` en ajoutant la balise `#' @import bbb` dans la description de ma fonction (ou directement dans le fichier `NAMESPACE` via la ligne `import(bbb)`
 
 Avantages :
 - Fonction rapide d'utilisation
 - Code lisible
+
 Désavantages :
 - `aaa` s'alourdit très fortement en dépendance dans le `NAMESPACE`
 - Le chargement de `aaa` peut être ralenti (car `aaa` va charger `bbb` en même temps)
 - Ne permet pas de régler les conflits de noms
+
 ### Conclusion
 
 Dans tous les cas, il est important de mentionner le package `bbb` dans le fichier `DESCRIPTION`.
