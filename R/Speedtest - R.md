@@ -28,11 +28,7 @@ library("microbenchmark")
 >     ggtitle("Extraire une colonne")
 > ```
 
-![[extraction_col.png]]
-
-![[img/extraction_col.png]]
-
-![img/extraction_col.png]
+![Extraction colonne](img/extraction_col.png)
 
 
 ### Extraction d'élément
@@ -65,7 +61,8 @@ library("microbenchmark")
 >     ggtitle("Extraire un élément")
 >     ```
 
-![[extraction_elt.png]]
+![Extraction élément](img/extraction_elt.png)
+
 
 ### Condition
 
@@ -87,7 +84,8 @@ Puis faire la même chose avec une comparaison de subset, filter et x[condition,
 >   ggtitle("Condition")
 > ```
 
-![[condition.png]]
+![Condition](img/condition.png)
+
 
 ### Modifier une case
 
@@ -114,7 +112,10 @@ Puis faire la même chose avec une comparaison de subset, filter et x[condition,
 >     ggtitle("Modifier un élément")
 > ```
 
-![[modification_elt.png]]
+![Modification](img/modification_elt.png)
+
+
+
 ### Création
 
 > [!info]- Détail du code
@@ -300,6 +301,6 @@ Puis faire la même chose avec une comparaison de subset, filter et x[condition,
 > )
 > ```
 
-![[creation-df-meme-type.png]]
+![Creation de data.frame avec colonnes de même type](img/creation-df-meme-type.png)
 
-![[creation-df-different-type.png]]
+![Creation de data.frame avec colonnes de type différents](img/creation-df-different-type.png)
