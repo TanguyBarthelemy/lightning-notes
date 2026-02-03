@@ -28,7 +28,7 @@ library("microbenchmark")
 >     ggtitle("Extraire une colonne")
 > ```
 
-![Extraction colonne](img/extraction_col.png)
+![Extraction colonne](../img/extraction_col.png)
 
 
 ### Extraction d'élément
@@ -61,7 +61,7 @@ library("microbenchmark")
 >     ggtitle("Extraire un élément")
 >     ```
 
-![Extraction élément](img/extraction_elt.png)
+![Extraction élément](../img/extraction_elt.png)
 
 
 ### Condition
@@ -84,7 +84,7 @@ Puis faire la même chose avec une comparaison de subset, filter et x[condition,
 >   ggtitle("Condition")
 > ```
 
-![Condition](img/condition.png)
+![Condition](../img/condition.png)
 
 
 ### Modifier une case
@@ -112,7 +112,7 @@ Puis faire la même chose avec une comparaison de subset, filter et x[condition,
 >     ggtitle("Modifier un élément")
 > ```
 
-![Modification](img/modification_elt.png)
+![Modification](../img/modification_elt.png)
 
 
 
@@ -301,6 +301,103 @@ Puis faire la même chose avec une comparaison de subset, filter et x[condition,
 > )
 > ```
 
-![Creation de data.frame avec colonnes de même type](img/creation-df-meme-type.png)
+![Creation de data.frame avec colonnes de même type](../img/creation-df-meme-type.png)
 
-![Creation de data.frame avec colonnes de type différents](img/creation-df-different-type.png)
+![Creation de data.frame avec colonnes de type différents](../img/creation-df-different-type.png)
+
+
+### Ajout d'un n-ième élément
+
+Combien est ce que cela coute d'ajouter un élément à un vecteur de taille n ?
+
+> [!info]- Détail du code
+> 
+> ```r
+> library("dplyr")
+> library("tidyr")
+> library("patchwork")
+> 
+> n <- 100000L
+> 
+> v <- NULL
+> l <- list()
+> 
+> df_times <- data.frame(
+>     nth_point = seq_len(n), 
+>     vector = double(n), 
+>     list = double(n)
+> )
+> 
+> for (k in seq_len(n)) {
+>     starting <- microbenchmark::get_nanotime()
+>     v <- c(v, k)
+>     the_time <- microbenchmark::get_nanotime() - starting
+>     df_times$vector[k] <- the_time
+>     
+>     starting <- microbenchmark::get_nanotime()
+>     l <- c(l, k)
+>     the_time <- microbenchmark::get_nanotime() - starting
+>     df_times$list[k] <- the_time
+> }
+> 
+> plot_time <- function(df2plot) {
+>     if (length(unique(df2plot$type)) == 1) {
+>         esthe <- aes(x = nth_point, y = time)
+>     } else {
+>         esthe <- aes(x = nth_point, y = time, colour = type)
+>     }
+>     gr <- df2plot |>
+>         ggplot(data = _, esthe) +
+>         geom_point(size = 0.2, alpha = 0.3) +
+>         ylab("Time (in ms)")
+>     return(gr)
+> }
+> 
+> df <- df_times |> 
+>     pivot_longer(cols = -nth_point, names_to = "type", values_to = "time") |> 
+>     dplyr::mutate(time = time / 10 ** 6)
+> 
+> g1 <- plot_time(df) + 
+>     scale_y_continuous(trans = 'log10', labels = scales::label_comma())
+> ggsave("full_series.png", plot = g1, width = 8, height = 7)
+> 
+> # Vector
+> 
+> gv1 <- df |>
+>     filter(type == "vector") |> 
+>     plot_time()
+> gv2 <- df |>
+>     filter(type == "vector", time < 25) |> 
+>     plot_time()
+> gv3 <- df |>
+>     filter(type == "vector", time < 0.35) |>  
+>     plot_time()
+> 
+> gv <- gv1 / gv2 / gv3
+> ggsave("full_series_vector.png", plot = gv, width = 8, height = 14)
+> 
+> 
+> # List
+> 
+> gl1 <- df |>
+>     filter(type == "list") |>  
+>     plot_time()
+> 
+> gl2 <- df |>
+>     filter(type == "list", time < 150) |>  
+>     plot_time()
+> gl3 <- df |>
+>     filter(type == "list", time < 4 + nth_point * 0.000025) |>  
+>     plot_time()
+> 
+> gl <- gl1 / gl2 / gl3
+> ggsave("full_series_list.png", plot = gl, width = 8, height = 14)
+> ```
+
+![Ajout-n-ieme](../img/full_series.png)
+
+Pour ajouter un n-ième élément à un vecteur :
+![Ajout-n-ieme-elt-vector](../img/full_series_vector.png)
+
+Pour ajouter un n-ième élément à une liste :
+![Ajout-n-ieme-elt-liste](../img/full_series_list.png)
