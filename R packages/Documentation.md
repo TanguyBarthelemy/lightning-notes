@@ -67,9 +67,9 @@ Certains termes sont à privilégier par rapport à d'autres:
 
 - Boolean plutôt que logical
 - Character vector => length > 1
-- String => length = 1
+- Character string => length = 1
 - Vector => length > 1
-- Scalar => length > 1
+- Scalar => length = 1
 - Pour parler de variable numérique, il vaut mieux utiliser les termes :
 	- integer (`1L`, `-4L`): nombres entiers
 	- double (`pi`, `0`, `-11.1`): nombres réels
