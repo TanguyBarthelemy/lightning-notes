@@ -1,3 +1,5 @@
+# Release 🇫🇷
+
 Ce doc explique comment faire une release de package R dans le calme et la sérénité.
 
 ## Cadre dans une organisation de plusieurs packages

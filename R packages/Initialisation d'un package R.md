@@ -1,3 +1,5 @@
+# Initialisation d'un package R 🇫🇷
+
 Lorsqu'on charge un package, généralement, on utilise la fonction `library()`. Mais pour des packages utilisant des dépendances ou des initialisations particulières, il faut rentrer dans les détails de l'initialisation.
 
 ## "Attaching" and "Loading"
